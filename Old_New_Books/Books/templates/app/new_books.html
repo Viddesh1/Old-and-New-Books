@@ -1,0 +1,48 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Top Wear{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+        <div class="list-group">
+            <a href="{% url 'newbooks' %}" class="list-group-item list-group-item-action" aria-current="true">
+                All Top Books
+            </a>
+            <a href="{% url 'newbooksdata' 'newAuthor1' %}" class="list-group-item list-group-item-action" aria-current="true">new Author1</a>
+            <a href="{% url 'newbooksdata' 'newAuthor2' %}" class="list-group-item list-group-item-action">new Author2</a>
+            <a href="{% url 'newbooksdata' 'newAuthor3' %}" class="list-group-item list-group-item-action">new Author3</a>
+            <a href="{% url 'newbooksdata' 'Action_and_Adventure' %}" class="list-group-item list-group-item-action">Action and Adventure</a>
+            <a href="{% url 'newbooksdata' 'Classics' %}" class="list-group-item list-group-item-action">Classics</a>
+            <a href="{% url 'newbooksdata' 'Comic_Book_or_Graphic_Novel' %}" class="list-group-item list-group-item-action">Comic Book or Graphic Novel</a>
+            <a href="{% url 'newbooksdata' 'Detective_and_Mystery' %}" class="list-group-item list-group-item-action">Detective and Mystery</a>
+            <a href="{% url 'newbooksdata' 'Fantasy' %}" class="list-group-item list-group-item-action">Fantasy</a>
+            <a href="{% url 'newbooksdata' 'Historical_Fiction' %}" class="list-group-item list-group-item-action">Historical Fiction</a>
+            <a href="{% url 'newbooksdata' 'Horror' %}" class="list-group-item list-group-item-action">Horror</a>
+            <a href="{% url 'newbooksdata' 'Literary_Fiction' %}" class="list-group-item list-group-item-action">Literary Fiction</a>
+            {% comment %} <a href="{% url 'newbooksdata' '' %}" class="list-group-item list-group-item-action"></a>
+            <a href="{% url 'newbooksdata' '' %}" class="list-group-item list-group-item-action"></a>
+            <a href="{% url 'newbooksdata' '' %}" class="list-group-item list-group-item-action"></a> {% endcomment %}
+            <a href="{% url 'newbooksdata' 'Below' %}" class="list-group-item list-group-item-action">Below 900</a>
+            <a href="{% url 'newbooksdata' 'Above' %}" class="list-group-item list-group-item-action">Above 900</a>
+        </div>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+        <div class="row">
+            {% for product in newbooks %}
+            <div class="col-sm-4 text-center mb-4">
+                <a href="{% url 'product-detail' product.id %}" class="btn">
+                    <div class="item">
+                        <img src="{{product.product_image.url}}" alt="" height="300" class="">
+                        <div class="fw-bold">{{product.title}}</div>
+                        <div class="fw-bold">{{product.discounted_price}}</div>
+                        <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
